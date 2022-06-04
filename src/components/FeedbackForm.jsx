@@ -28,6 +28,7 @@ function FeedbackForm({ newFeed }) {
       const newFeedback = { text, rating };
       newFeed(newFeedback);
       setText('');
+      setBtnDisabled(true);
     }
   };
   return (
