@@ -5,6 +5,10 @@ import { useState } from 'react';
 import FeedbackStats from './components/FeedbackStats';
 import FeedbackForm from './components/FeedbackForm';
 import { v4 as uuidv4 } from 'uuid';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AboutPages from './pages/AboutPages';
+import AboutIconLink from './components/AboutIconLink';
+
 function App() {
   const [feedback, setFeedback] = useState(FeedbackData);
   const handleDelete = (id) => {
@@ -19,15 +23,27 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Header />
 
       <div className="container">
-        <FeedbackForm newFeed={addFeed} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleID={handleDelete} />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <FeedbackForm newFeed={addFeed} />
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList feedback={feedback} handleID={handleDelete} />
+              </>
+            }
+          ></Route>
+          <Route path="/about" element={<AboutPages />} />
+        </Routes>
       </div>
-    </>
+      <AboutIconLink />
+    </Router>
   );
 }
 
