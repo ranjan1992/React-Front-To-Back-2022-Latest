@@ -7,7 +7,7 @@ export const FeedbackProvider = ({ children }) => {
     {
       id: 1,
       text: 'This item is from context',
-      rating: 10,
+      rating: 3,
     },
   ]);
   const [feedbackEdit, setFeedbackEdit] = useState({ item: {}, edit: false });
@@ -33,7 +33,13 @@ export const FeedbackProvider = ({ children }) => {
 
   return (
     <FeedbackContext.Provider
-      value={{ feedback, handleDelete, addFeed, editFeedback }}
+      value={{
+        feedback,
+        handleDelete,
+        addFeed,
+        editFeedback,
+        feedbackEdit,
+      }}
     >
       {children}
     </FeedbackContext.Provider>
