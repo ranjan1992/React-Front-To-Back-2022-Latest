@@ -119,6 +119,7 @@ input:focus {
 }
 
 .feedback-stats {
+  margin: 1rem;
   color: #fff;
   display: flex;
   justify-content: space-between;
