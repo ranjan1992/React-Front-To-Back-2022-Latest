@@ -5,7 +5,7 @@ import RatingSelect from './RatingSelect';
 import FeedbackContext from './context/FeedbackContext';
 
 function FeedbackForm() {
-  const { addFeed, feedbackEdit } = useContext(FeedbackContext);
+  const { addFeed, feedbackEdit, updateFeedback } = useContext(FeedbackContext);
   useEffect(() => {
     if (feedbackEdit.edit === true) {
       setBtnDisabled(false);
@@ -36,7 +36,12 @@ function FeedbackForm() {
     e.preventDefault();
     if (text.trim().length > 10) {
       const newFeedback = { text, rating };
-      addFeed(newFeedback);
+      if (feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedback);
+      } else {
+        addFeed(newFeedback);
+      }
+
       setText('');
       setBtnDisabled(true);
     }

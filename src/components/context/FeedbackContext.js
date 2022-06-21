@@ -5,7 +5,6 @@ const FeedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([
     {
-      id: 1,
       text: 'This item is from context',
       rating: 3,
     },
@@ -16,6 +15,14 @@ export const FeedbackProvider = ({ children }) => {
     if (window.confirm('Are you sure you want to delete ?')) {
       setFeedback(feedback.filter((item) => item.id != id));
     }
+  };
+
+  //Update feedback item
+  const updateFeedback = (id, updItem) => {
+    setFeedback(
+      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+    );
+    console.log(feedback);
   };
 
   const addFeed = (newFeed) => {
@@ -39,6 +46,7 @@ export const FeedbackProvider = ({ children }) => {
         addFeed,
         editFeedback,
         feedbackEdit,
+        updateFeedback,
       }}
     >
       {children}
